@@ -17,18 +17,6 @@ defmodule OpenTok do
 
   @token_prefix "T1=="
 
-  unless Application.get_env(:opentok, OpenTok) do
-    raise "OpenTok is not configured"
-  end
-
-  unless Keyword.get(Application.get_env(:opentok, OpenTok), :key) do
-    raise "OpenTok requires :key to be configured"
-  end
-
-  unless Keyword.get(Application.get_env(:opentok, OpenTok), :secret) do
-    raise "OpenTok requires :secret to be configured"
-  end
-
   @doc """
   Create new WebRTC session.
 
@@ -116,7 +104,8 @@ defmodule OpenTok do
     auth_headers ++ headers
   end
 
-  @spec opentok_process_response(%HTTPoison.Response{} | %HTTPotion.Response{}) :: opentok_response
+  @spec opentok_process_response(%HTTPoison.Response{} | %HTTPotion.Response{}) ::
+          opentok_response
   defp opentok_process_response(response) do
     case response do
       %{status_code: 200, body: body} ->
