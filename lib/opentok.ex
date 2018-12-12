@@ -6,7 +6,7 @@ defmodule OpenTok do
   require Logger
   use HTTPoison.Base
 
-  @type opentok_response :: {:json, map()} | {:error, Exception.t()}
+  @type opentok_response :: {:json, map()} | {:json, [map()]} | {:error, Exception.t()}
 
   @default_algos ["HS256"]
   @endpoint "https://api.opentok.com"
